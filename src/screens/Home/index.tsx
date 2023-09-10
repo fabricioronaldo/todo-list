@@ -1,7 +1,11 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import { Task } from '../../components/Task';
+import { useState } from 'react';
 
 export function Home() {
+
+  const [addTasks, setAddTasks] = useState([])
   return (
     <View style={styles.container}>
       <View style={styles.titleAplication}>
@@ -25,14 +29,16 @@ export function Home() {
 
       </View>
       <View style={styles.score}>
-        <Text style={styles.title}>
-          Criadas
+        <Text style={styles.scoreCreated}>
+          Criadas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
         </Text>
 
-        <Text style={styles.title}>
-          Concluidas
+        <Text style={styles.scoreCompleted}>
+          Concluidas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
         </Text>
       </View>
+      <Task />
+      
     </View>
   )
 }

@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     padding:16,
   },
   title: {
-    color: global.purple,
-    marginBottom:32,
+    color: global.gray200,
+    
   },
   titleAplication: {
     alignItems: 'center',
@@ -44,8 +44,25 @@ export const styles = StyleSheet.create({
     borderBottomColor: global.gray100,
     flexDirection: 'row',
     justifyContent:'space-around',
+    alignItems: 'center',
+    marginBottom:32,
+  },
+  scoreCreated: {
+    color: global.blue,
+    marginBottom:32,
+  },
+  scoreCompleted: {
+    color: global.purple,
+    marginBottom:32,
+  },
+  counterScore: {
+    backgroundColor: global.gray400,
+    //marginLeft: 50,
+    paddingHorizontal: 10,
+    borderRadius: 50,
+  },
 
-  }
+
 
 
 })
