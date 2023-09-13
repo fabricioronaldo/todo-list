@@ -1,11 +1,20 @@
-import { Image, Text, Touchable, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View} from "react-native";
 import { styles } from "./styles";
+import CheckBox from 'react-native-check-box';
+import { useState } from "react";
 
 export function Task(){
+
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <View style={styles.containerTask}>
+      <CheckBox
+        isChecked={isChecked}
+        onClick={() => setIsChecked(!isChecked)}
+        
+      />
       <Text style={styles.newTask}>
-        tarefa para ser realizada.
         tarefa a ser realizada.
       </Text>
       <TouchableOpacity>
