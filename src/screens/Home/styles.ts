@@ -47,6 +47,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom:32,
   },
+  socreLine: {
+    flexDirection: 'row',
+    
+    alignItems:'center',
+  },
   scoreCreated: {
     color: global.blue,
     marginBottom:32,
@@ -61,6 +66,24 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 50,
   },
+  listEmptyText: {
+    color: global.gray300,
+    textAlign: 'center',
+    fontWeight: 'normal',
+  },
+  listEmptyTextBold:{
+    color: global.gray300,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  listEmptyImage: {
+    padding:32,
+    marginBottom: 32
+  },
+  listEmptyContainer: {
+    alignItems: 'center'
+  }
+
 
 
 

@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { styles } from './styles';
 import { Task } from '../../components/Task';
 import { useState } from 'react';
@@ -8,13 +8,15 @@ export function Home() {
   const [addTask, setAddTask] = useState<string[]>([]);
   const [taskDescription, setTaskDescription] = useState('');
 
-  function handleTaskAdd(){
+  function handleTaskAdd() {
+    
     setAddTask(prevState => [...prevState, taskDescription]);
     setTaskDescription('');
+
   };
 
-  function handleTaskRemove(task){
-    Alert.alert('Deseja relamente remover a tarefa da lista?', [
+  function handleTaskRemove(task: string) {
+    Alert.alert('Remover', 'Deseja relamente remover a tarefa da lista?', [
       {
         text: 'Sim',
         onPress: () => setAddTask(prevState => prevState.filter(addTask => addTask !== task))
@@ -23,7 +25,7 @@ export function Home() {
         text: 'Não'
       }
     ])
-  }
+  };
 
 
   return (
@@ -52,33 +54,47 @@ export function Home() {
 
       </View>
       <View style={styles.score}>
-        <Text style={styles.scoreCreated}>
-          Criadas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
-        </Text>
-
-        <Text style={styles.scoreCompleted}>
-          Concluidas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
-        </Text>
+        
+        <View>
+          <Text style={styles.scoreCreated}>
+            Criadas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
+          </Text>
+        </View>
+        
+        <View>
+          <Text style={styles.scoreCompleted}>
+            Concluidas <View style={styles.counterScore}><Text style={styles.title}>0</Text></View>
+          </Text>
+        </View>
+      
       </View>
-      <FlatList 
+
+      <FlatList
         data={addTask}
         keyExtractor={item => item}
-        renderItem={({item}) => (
-          <Task 
+        renderItem={({ item }) => (
+          <Task
             newTask={item}
+            onRemove={() => handleTaskRemove(item)}
           />
         )}
         ListEmptyComponent={() => (
-          // <Image 
-          //   source={require('../../../assets/Clipboard.png')}
-          // />
-          <Text style={styles.listEmptyText}>
-            Você ainda não tem tarefas cadastradas
-            Crie tarefas e organize seus itens a fazer.
-          </Text>
+          <View style={styles.listEmptyContainer}>
+            <Image
+              style={styles.listEmptyImage}
+              source={require('../../../assets/Clipboard.png')}
+            />
+            <Text style={styles.listEmptyTextBold}>
+              Você ainda não tem tarefas cadastradas
+              {'\n'}
+              <Text style={styles.listEmptyText}>
+                Crie tarefas e organize seus itens a fazer.
+              </Text>
+            </Text>
+          </View>
         )}
       />
-      
+
     </View>
   )
 }
